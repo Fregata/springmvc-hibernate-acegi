@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="   
+          http://www.springframework.org/schema/beans   
+          http://www.springframework.org/schema/beans/spring-beans-4.1.xsd   
+          http://www.springframework.org/schema/tx   
+          http://www.springframework.org/schema/tx/spring-tx-4.1.xsd  
+          http://www.springframework.org/schema/context   
+          http://www.springframework.org/schema/context/spring-context-4.1.xsd   
+          http://www.springframework.org/schema/aop   
+          http://www.springframework.org/schema/aop/spring-aop-4.1.xsd" default-autowire="byName">
+
+     <context:property-placeholder location="classpath:database.properties"/>
+     <!-- 定义数据源Bean，使用C3P0数据源实现 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<!-- 指定连接数据库的驱动 -->
+		<property name="driverClass" value="${mysql.driverclass}"/>
+		<!-- 指定连接数据库的URL -->
+		<property name="jdbcUrl" value="${mysql.jdbcurl}"/>
+		<!-- 指定连接数据库的用户名 -->
+		<property name="user" value="${mysql.user}"/>
+		<!-- 指定连接数据库的密码 -->
+		<property name="password" value="${mysql.password}"/>
+		<!-- 指定连接数据库连接池的最大连接数 -->
+		<property name="maxPoolSize" value="40"/>
+		<!-- 指定连接数据库连接池的最小连接数 -->
+		<property name="minPoolSize" value="1"/>
+		<!-- 指定连接数据库连接池的初始化连接数 -->
+		<property name="initialPoolSize" value="1"/>
+		<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+		<property name="maxIdleTime" value="20"/>
+	</bean>
+     
+     <!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /> 
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath*:/com/business/persistence/hbm/</value> 
+			</list>
+		</property>
+		<!-- 定义Hibernate的SessionFactory的属性 -->
+		<property name="hibernateProperties">
+			<!-- 配置Hibernate属性 -->
+			<value>
+			hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+			hibernate.hbm2ddl.auto=update
+			hibernate.show_sql=true
+			hibernate.format_sql=true;
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<!-- concise transaction manager! -->
+	<bean id="txProxyTemplate" abstract="true" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager"></ref>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED,-exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-exception</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-exception</prop>
+				<!-- prop key="*">PROPAGATION_REQUIRED,readOnly</prop-->
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="baseDao" class="com.framework.dao.BaseDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="IBaseService" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.framework.service.BaseService">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+     
+     <!-- 自动扫描组件，需要把controller去掉，否则影响事务管理 -->
+     <context:component-scan base-package="com.business">
+     	<context:exclude-filter type="regex" expression="com.business.web.*"/>
+     </context:component-scan>
+</beans>

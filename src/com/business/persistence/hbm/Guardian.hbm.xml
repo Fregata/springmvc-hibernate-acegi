@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Guardian" table="guardian">
+		<id name="id" column="GRD_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="code" column="GRD_CODE" type="string"/>
+		<property name="name" column="GRD_NAME" type="string"/>
+		<property name="gender" column="GRD_GENDER" type="string"/>
+		<property name="age" column="GRD_AGE" type="int"/>
+		
+		<set name="students" table="guardian_student">
+			<key column="GRD_CODE"/>
+			<many-to-many class="Student" column="STU_CODE"/>
+		</set>
+	</class>
+</hibernate-mapping>

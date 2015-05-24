@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Clazz" table="clazz">
+		<id name="id" column="CLZ_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="name" column="CLZ_NAME" type="string"/>
+		<many-to-one name="schoolRoll" cascade="all" unique="true" class="SchoolRoll" column="SCH_ID"/>
+	</class>
+</hibernate-mapping>

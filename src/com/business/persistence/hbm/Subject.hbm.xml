@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Subject" table="subject">
+		<id name="id" column="SUB_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="name" column="SUB_NAME" type="string"/>
+		<property name="code" column="SUB_CODE" type="string"/>
+		<many-to-one name="schoolRoll" not-null="true" class="SchoolRoll" column="SCH_CODE"/>
+	</class>
+</hibernate-mapping>

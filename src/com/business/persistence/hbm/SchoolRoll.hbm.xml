@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="SchoolRoll" table="schoolroll">
+		<id name="id" column="SCH_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="name" column="SCH_NAME" type="string"/>
+		<property name="code" column="SCH_CODE" type="string"/>
+		<property name="level" column="SCH_LEVEL" type="string"/>
+		<property name="prop" column="SCH_PROP" type="string"/>
+		<property name="parentId" column="SCH_PARENT_ID" type="int"/>
+		
+		<set name="addresses" inverse="true" table="geograph_schoolroll">
+			<key column="SCH_ID"/>
+			<many-to-many class="Geograph" column="GEO_ID"/>
+		</set>
+		
+		<set name="subjects" inverse="true">
+			<key column="SCH_CODE"/>
+			<one-to-many class="Subject"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Geograph" table="geograph">
+		<id name="id" column="GEO_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="name" column="GEO_NAME" type="string"/>
+		<property name="level" column="GEO_LEVEL" type="int"/>
+		<property name="binCode" column="GEO_BIN" type="string"/>
+		<property name="strCode" column="GEO_CODE" type="string"/>
+		<property name="parentId" column="GEO_PARENT_ID" type="int"/>
+		<set name="schoolRolles" table="geograph_schoolroll">
+			<key column="GEO_ID"/>
+			<many-to-many class="SchoolRoll" column="SCH_ID"/>
+		</set>
+	</class>
+</hibernate-mapping>

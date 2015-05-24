@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Student" table="student">
+		<id name="id" column="STU_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="code" column="STU_CODE" type="string"/>
+		<property name="name" column="STU_NAME" type="string"/>
+		<property name="gender" column="STU_GENDER" type="string"/>
+		<property name="age" column="STU_AGE" type="int"/>
+		
+		<many-to-one name="stuActivity" cascade="all" unique="true" class="StudentActivity" column="STU_ACT_ID"/>
+		<set name="guardians" table="guardian_student">
+			<key column="STU_CODE"/>
+			<many-to-many class="Guardian" column="GRD_CODE"/>
+		</set>
+	</class>
+</hibernate-mapping>

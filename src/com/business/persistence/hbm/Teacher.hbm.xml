@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="Teacher" table="teacher">
+		<id name="id" column="TEA_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="code" column="TEA_CODE" type="string"/>
+		<property name="name" column="TEA_NAME" type="string"/>
+		<property name="gender" column="TEA_GENDER" type="string"/>
+		<property name="age" column="TEA_AGE" type="int"/>
+		
+		<many-to-one name="teaActivity" cascade="all" unique="true" class="TeacherActivity" column="TEA_ACT_ID"/>
+		<many-to-one name="subActivity" cascade="all" unique="true" class="SubjectActivity" column="SUB_ACT_ID"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.business.persistence.vo">
+	<class name="SubjectActivity" table="subject_activity">
+		<id name="id" column="SUB_ACT_ID" type="int">
+			<generator class="identity"/>
+		</id>
+		
+		<property name="startDate" column="START_DATE" type="date"/>
+		<property name="finishDate" column="FINISH_DATE" type="date"/>
+		
+		<many-to-one name="teacher" cascade="all" unique="true" class="Teacher" column="TEA_CODE"/>
+		<many-to-one name="subject" cascade="all" unique="true" class="Subject" column="SUB_CODE"/>
+	</class>
+</hibernate-mapping>
