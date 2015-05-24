@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="<c:url value='/img/ico.png'/>" rel="icon">
-    <title>特警支队情报信息系统</title>
+    <link href="<c:url value='/img/sz.ico'/>" rel="icon">
+    <title>教学管理系统</title>
     <link href="<c:url value='/css/login.css'/>" rel="stylesheet">
   </head>
 
@@ -18,7 +18,7 @@
         <img src="<c:url value='/img/user.png'/>">
       </p>
       <p>
-        <font style="font-size:1 rem;font-family:微软雅黑;">特警支队情报信息系统</font>
+        <font style="font-size:1 rem;font-family:微软雅黑;">教学管理系统</font>
       </p>
     </section>
     <form method="post" action="${ctx}/j_acegi_security_check" class="login">

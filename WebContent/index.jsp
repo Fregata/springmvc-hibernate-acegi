@@ -4,8 +4,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" href="<c:url value='/img/ico.png'/>">
-    <title>特警支队情报信息系统</title>
+    <link rel="icon" href="<c:url value='/img/sz.ico'/>">
+    <title>教学管理系统</title>
   </head>
   <body>
   <script src="<c:url value='/js/jquery.js'/>"></script>

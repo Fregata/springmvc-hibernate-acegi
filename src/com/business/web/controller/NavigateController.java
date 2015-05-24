@@ -30,14 +30,24 @@ public class NavigateController extends BaseController{
 		return "login";
 	}
 	
-	@RequestMapping(value="/super/input.html",method=RequestMethod.GET)
-	public String input(){
-		return "info_int";
+	@RequestMapping(value="/super/create-profile.html",method=RequestMethod.GET)
+	public String createProfile(){
+		return "create_profile";
 	}
 	
-	@RequestMapping(value="/super/data.html",method=RequestMethod.GET)
-	public String data(){
-		return "data_imp";
+	@RequestMapping(value="/super/create-subject.html",method=RequestMethod.GET)
+	public String createSubject(){
+		return "create_subject";
+	}
+	
+	@RequestMapping(value="/super/import-teacher.html",method=RequestMethod.GET)
+	public String importTeacher(){
+		return "import_teacher";
+	}
+	
+	@RequestMapping(value="/super/import-student.html",method=RequestMethod.GET)
+	public String importStudent(){
+		return "import_student";
 	}
 	
 	@RequestMapping(value="/admin/system.html",method=RequestMethod.GET)

@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#" style="padding:7px 0px 0px 10px">
-        <img src="<c:url value='/img/logo.png'/>">
+        <img src="<c:url value='/img/logo.png'/>" height="40px">
       </a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">

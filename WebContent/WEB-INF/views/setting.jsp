@@ -9,9 +9,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<c:url value='/img/ico.png'/>">
-
-    <title>特警支队情报信息系统</title>
+    <link href="<c:url value='/img/sz.ico'/>" rel="icon">
+    <title>教学管理系统</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">

@@ -9,9 +9,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<c:url value='/img/ico.png'/>">
-
-    <title>特警支队情报信息系统</title>
+    <link href="<c:url value='/img/sz.ico'/>" rel="icon">
+    <title>教学管理系统</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
@@ -38,21 +37,23 @@
           <ul class="nav nav-sidebar">
             <li><a href="${ctx}/user/main.html"><i class="icon-tasks"></i> 全部功能</a></li>
           </ul>
-
           <ul class="nav nav-sidebar">
             <li>
-              <a href="${ctx}/user/info.html"><i class="icon-search"></i> 情报查询</a>
+              <a href="${ctx}/super/create-profile.html"><i class="icon-search"></i> 学校基础信息创建</a>
             </li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="${ctx}/super/input.html"><i class="icon-edit"></i> 情报录入<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="${ctx}/super/create-subject.html"><i class="icon-edit"></i> 教学科目信息创建<span class="sr-only">(current)</span></a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="${ctx}/super/data.html"><i class="icon-signin"></i> 数据导入</a></li>
+            <li><a href="${ctx}/super/import-teacher.html"><i class="icon-signin"></i> 教师信息导入</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="${ctx}/super/import-student.html"><i class="icon-signin"></i> 学生信息导入</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          	<h1 class="page-header">录入情报信息</h1>
+          	<h1 class="page-header">教学科目信息创建</h1>
 			<div class="panel panel-success">
 			  <div class="panel-body">
 		      <div class="row row-offcanvas row-offcanvas-center">
