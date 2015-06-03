@@ -1,7 +1,13 @@
 package com.business.persistence.vo;
 
-public class Subject {
+import java.io.Serializable;
 
+public class Subject implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8008929627857487696L;
 	private Integer id;
 	private String name;
 	private String code;

@@ -1,7 +1,13 @@
 package com.business.persistence.vo;
 
-public class Teacher {
+import java.io.Serializable;
 
+public class Teacher implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1134382055571508633L;
 	private Integer id;
 	private String code;
 	private String name;

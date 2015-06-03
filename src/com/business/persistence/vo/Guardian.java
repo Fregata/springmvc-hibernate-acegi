@@ -1,10 +1,11 @@
 package com.business.persistence.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Guardian {
-
+public class Guardian implements Serializable{
+	private static final long serialVersionUID = 7834594902791814115L;
 	private Integer id;
 	private String code;
 	private String name;

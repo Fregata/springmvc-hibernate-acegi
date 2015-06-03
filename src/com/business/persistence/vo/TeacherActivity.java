@@ -1,9 +1,14 @@
 package com.business.persistence.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TeacherActivity {
+public class TeacherActivity implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8089929407647923282L;
 	private Integer id;
 	private Date startDate;
 	private Date finishDate;

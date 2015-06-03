@@ -1,7 +1,11 @@
 package com.business.persistence.vo;
 
-public class Clazz {
+import java.io.Serializable;
 
+public class Clazz implements Serializable{
+
+	private static final long serialVersionUID = -7488928706907789162L;
+	
 	private Integer id;
 	private String name;
 	private SchoolRoll schoolRoll;

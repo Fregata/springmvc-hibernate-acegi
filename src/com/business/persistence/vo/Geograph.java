@@ -1,10 +1,11 @@
 package com.business.persistence.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Geograph {
-
+public class Geograph implements Serializable{
+	private static final long serialVersionUID = -4517697105396075379L;
 	private Integer id;
 	private String name;
 	private Integer level;

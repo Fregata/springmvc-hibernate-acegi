@@ -1,7 +1,10 @@
 package com.business.persistence.vo;
 
-public class Grade {
+import java.io.Serializable;
 
+public class Grade implements Serializable{
+
+	private static final long serialVersionUID = 259690919739905921L;
 	private Integer id;
 	private String name;
 	private SchoolRoll schoolRoll;

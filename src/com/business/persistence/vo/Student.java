@@ -1,10 +1,15 @@
 package com.business.persistence.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Student {
+public class Student implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1522996775888011768L;
 	private Integer id;
 	private String code;
 	private String name;

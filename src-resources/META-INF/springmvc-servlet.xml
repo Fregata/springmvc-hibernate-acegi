@@ -20,7 +20,20 @@
     	 它会自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,
     	   是spring MVC为@Controllers分发请求所必须的
      -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" /> 
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean"> 
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="false" /> 
+		<property name="ignoreAcceptHeader" value="false" /> 
+		<property name="mediaTypes" > 
+			<value>
+				atom=application/atom+xml
+			 	html=text/html
+				json=application/json
+				*=*/*
+			</value> 
+		</property>
+	</bean>
     
     <!-- 这里拦截器还有一种配置方法【针对路径进行配置】 推荐使用这个，方便直观-->
      <!-- 全局配置 

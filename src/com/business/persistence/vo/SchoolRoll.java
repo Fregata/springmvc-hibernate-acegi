@@ -1,10 +1,15 @@
 package com.business.persistence.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SchoolRoll {
+public class SchoolRoll implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1631434737236882548L;
 	private Integer id;
 	private String name;
 	private String code;
