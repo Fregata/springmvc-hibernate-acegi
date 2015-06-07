@@ -58,9 +58,10 @@
 			<div id="sch-step1" class="panel panel-success">
 			  <div class="panel-heading">
 				  <ol style="list-style:none;display:block;width:auto;margin:0px auto">
-					<li style="padding-left:120px;display:inline"><font color="red"><strong>1.学校信息设置</strong></font></li>
-					<li style="padding-left:120px;display:inline">2.年级信息设置</li>
-			 		<li style="padding-left:120px;display:inline">3.班级信息设置</li>
+					<li style="padding-left:90px;display:inline"><font color="red"><strong>1.学校信息设置</strong></font></li>
+					<li style="padding-left:90px;display:inline">2.年级信息设置</li>
+			 		<li style="padding-left:90px;display:inline">3.班级信息设置</li>
+			 		<li style="padding-left:90px;display:inline">4.确认</li>
 				  </ol>
 			  </div>
 			  <div class="panel-body">

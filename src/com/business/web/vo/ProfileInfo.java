@@ -22,14 +22,12 @@ public class ProfileInfo implements Serializable {
 	private List<ClazzInfo> clazzInfoList;
 	
 	public ProfileInfo(String schoolName, String schoolCode){
-		this.geograph = new Geograph();
 		this.scl_SchoolRoll = new SchoolRoll();
 		this.scl_SchoolRoll.setCode(schoolCode);
 		this.scl_SchoolRoll.setName(schoolName);
 		this.scl_SchoolRoll.setLevel("完中");
 		this.scl_SchoolRoll.setProp("公办");
-		this.scl_SchoolRoll.getAddresses().add(this.geograph);
-		this.geograph.getSchoolRolles().add(this.scl_SchoolRoll);
+	
 		
 		//school
 		this.school = new School();

@@ -13,7 +13,7 @@
 		<property name="binCode" column="GEO_BIN" type="string"/>
 		<property name="strCode" column="GEO_CODE" type="string"/>
 		<property name="parentId" column="GEO_PARENT_ID" type="int"/>
-		<set name="schoolRolles" table="geograph_schoolroll">
+		<set name="schoolRolles" table="geograph_schoolroll" lazy="false">
 			<key column="GEO_ID"/>
 			<many-to-many class="SchoolRoll" column="SCH_ID"/>
 		</set>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.business.persistence.vo.Geograph;
+import com.business.service.IPersisteManager;
 import com.business.util.CacheUtil;
 import com.business.web.vo.City;
 import com.business.web.vo.District;
@@ -28,6 +30,8 @@ import com.business.web.vo.Province;
 @Controller
 public class ProfileController extends BaseController{
 
+	@Autowired
+	IPersisteManager persisteManger;
 	
 	@RequestMapping(value="/super/create-profile.html",method=RequestMethod.GET)
 	public String createProfile(HttpServletRequest request,HttpServletResponse response){
@@ -74,20 +78,23 @@ public class ProfileController extends BaseController{
 	}
 	
 	@RequestMapping(value="/super/profile/step1.html",method=RequestMethod.POST)
-	public String profileStep1(HttpServletRequest request,HttpServletResponse response){
+	public String profileStep1(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("UTF-8");
 		String sclName = request.getParameter("profile_name");
 		//String province = request.getParameter("province");
 		String city = request.getParameter("city");
 		String district = request.getParameter("district");
 		
+		Geograph geo = null;
+		if(district!=null&&district.startsWith(city.substring(0, 2))){
+			geo = (Geograph)CacheUtil.getCache(CacheUtil.DISTRICT_CACHE).get(district);
+		}else{
+			geo = (Geograph)CacheUtil.getCache(CacheUtil.CITY_CACHE).get(city);
+		}
+		
 		int sequence = (int)(Math.random() * 10000);
 		ProfileInfo pi = new ProfileInfo(sclName,Integer.toString(sequence));
-		
-		if(district!=null&&district.startsWith(city.substring(0, 2))){
-			pi.setGeograph((Geograph)CacheUtil.getCache(CacheUtil.DISTRICT_CACHE).get(district));
-		}else{
-			pi.setGeograph((Geograph)CacheUtil.getCache(CacheUtil.CITY_CACHE).get(city));
-		}
+		pi.setGeograph(geo);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("profileInfo", pi);
@@ -106,8 +113,20 @@ public class ProfileController extends BaseController{
 	
 	@RequestMapping(value="/super/profile/step3.html",method=RequestMethod.POST)
 	public String profileStep3(HttpServletRequest request,HttpServletResponse response){
-		
+		HttpSession session = request.getSession();
+		ProfileInfo pi = (ProfileInfo)session.getAttribute("profileInfo");
+		session.setAttribute("schoolroll", pi.getScl_SchoolRoll());
+		session.setAttribute("geograph", pi.getGeograph());
+		session.setAttribute("clazzList", pi.getClazzInfoList());
 		return "create_profile_confirm";
+	}
+	
+	@RequestMapping(value="/super/profile/step4.html",method=RequestMethod.POST)
+	public String profileStep4(HttpServletRequest request,HttpServletResponse response){
+		HttpSession session = request.getSession();
+		ProfileInfo pi = (ProfileInfo)session.getAttribute("profileInfo");
+		persisteManger.saveProfileInfo(pi);
+		return "create_profile_step1";
 	}
 	
 	@RequestMapping(value="/super/create-subject.html",method=RequestMethod.GET)

@@ -13,7 +13,9 @@
     <title>教学管理系统</title>
 
     <!-- Bootstrap core CSS -->
+    <link href="<c:url value='/css/business.css'/>" rel="stylesheet">
     <link href="<c:url value='/css/bootstrap.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/css/bootstrap-table.css'/>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<c:url value='/css/dashboard.css'/>" rel="stylesheet">
@@ -58,75 +60,31 @@
 			<div id="sch-step2" class="panel panel-success">
 			  <div class="panel-heading">
 			  		<ol style="list-style:none;display:block;width:auto;margin:0px auto">
-					<li style="padding-left:120px;display:inline">1.学校信息设置</li>
-					<li style="padding-left:120px;display:inline"><font color="red"><strong>2.年级信息设置</strong></font></li>
-			 		<li style="padding-left:120px;display:inline">3.班级信息设置</li>
+					<li style="padding-left:90px;display:inline">1.学校信息设置</li>
+					<li style="padding-left:90px;display:inline"><font color="red"><strong>2.年级信息设置</strong></font></li>
+			 		<li style="padding-left:90px;display:inline">3.班级信息设置</li>
+			 		<li style="padding-left:90px;display:inline">4.确认</li>
 				  </ol>
 			  </div>
 			  <div class="panel-body">
 			      <div class="row row-offcanvas row-offcanvas-center" style="height:auto">
-			     	<div class="table-responsive">
-			          <table class="table">
-			            <thead>
-			             <tr>
-			               <th>年级代码</th>
-			               <th>年级名称</th>
-			               <th>操作</th>
-			             </tr>
-			            </thead>
-			            <tbody>
+			      <table data-toggle="table">
+					    <thead>
+					    <tr>
+					        <th data-field="name">年级代码</th>
+					        <th data-field="stargazers_count">年级名称</th>
+					        <th data-field="action" data-formatter="actionFormatter" data-events="actionEvents">操作</th>
+					    </tr>
+					    </thead>
+					    <tbody>
 			              <c:forEach items="${gradeList}" var="item">
 			               <tr>
-			                 <td style="padding:4px 0px 0px 4px">${item.grd_SchoolRoll.code}</td>
-			                 <td style="padding:4px 0px 0px 4px">${item.grade.name}</td>
-			                 <td style="padding:0px">
-				                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-							      <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#${item.grd_SchoolRoll.code}">修改</button>
-							      <button type="button" class="btn btn-danger" onclick="deleteGrd()">删除</button>
-							     </div>
-			                 </td>
-			               </tr>
-			               <tr>
-			               	<td colspan="3">
-			               	<div id="${item.grd_SchoolRoll.code}" class="bs-callout bs-callout-danger collapse">
-			               		<div class="col-sm-8 col-sm-offset-2">
-			               		<div class="panel panel-default well" >
-					                <div class="panel-heading">
-					                    <div class="panel-title" style="text-align: left;"><i class="icon-edit"></i> 年级信息修改</div>
-					                </div>
-					                <div class="panel-body" >
-					                <form class="form-horizontal" method="POST" action="${ctx}/super/profile/step2.html">
-										<div class="control-group">
-								          <label class="control-label" for="appCode">年级代码</label>
-								          <div class="controls">
-								          	<input name="grdId" type="text" value="item.appid" style="display:none">
-								            <input id="grdCode" name="appCode" type="text" placeholder="${item.grd_SchoolRoll.code}" class="input-xlarge" value="${item.grd_SchoolRoll.code}" disabled="disabled">
-								          </div>
-								        </div>
-									    <div class="control-group">
-								          <label class="control-label" for="appName">年级名称</label>
-								          <div class="controls">
-								            <input id="grdName" name="grdName" type="text" placeholder="${item.grade.name}" class="input-xlarge" value="${item.grade.name}">
-								          </div>
-								        </div>
-									
-								        <div class="control-group">
-								          <label class="control-label"></label>
-								          <div class="controls">
-								            <button class="btn btn-danger" type="submit">提交修改</button>
-								          </div>
-								        </div>
-								  	</form>
-					                </div>
-					            </div>
-					            </div>
-							</div>
-							</td>
+			                 <td>${item.grd_SchoolRoll.code}</td>
+			                 <td>${item.grade.name}</td>
 			               </tr>
 			               </c:forEach>
-			            </tbody>
-			          </table>
-			      	</div>
+			             </tbody>
+					</table>
 			      </div>
 			  </div>
 		      <div class="panel-footer">
@@ -150,6 +108,8 @@
     ================================================== -->
 	<script src="<c:url value='/js/jquery.js'/>"></script>
     <script src="<c:url value='/js/bootstrap.min.js'/>"></script>
+    <script src="<c:url value='/js/bootstrap-table.js'/>"></script>
+    <script src="<c:url value='/js/bootstrap-table-zh-CN.js'/>"></script>
     <script src="<c:url value='/js/holder.js'/>"></script>
     <script src="<c:url value='/js/ie10-viewport-bug-workaround.js'/>"></script>
     <script src="<c:url value='/js/jquery.form.js'/>"></script>
@@ -158,6 +118,27 @@
 		$(document).ready(function(){
 			$("#main").addClass("active");
 		});
+		function actionFormatter(value, row, index) {
+		    return [
+		        '<a class="edit ml10" href="javascript:void(0)" title="Edit">',
+		        '<i class="glyphicon glyphicon-edit"></i>',
+		        '</a>',
+		        '<a class="remove ml10" href="javascript:void(0)" title="Remove">',
+		        '<i class="glyphicon glyphicon-remove"></i>',
+		        '</a>'
+		    ].join('');
+		}
+
+		window.actionEvents = {
+		    'click .edit': function (e, value, row, index) {
+		        alert('You click edit icon, row: ' + JSON.stringify(row));
+		        console.log(value, row, index);
+		    },
+		    'click .remove': function (e, value, row, index) {
+		        alert('You click remove icon, row: ' + JSON.stringify(row));
+		        console.log(value, row, index);
+		    }
+		};
 	</script>
   </body>
 </html>
