@@ -13,11 +13,27 @@ public class SchoolRoll implements Serializable{
 	private Integer id;
 	private String name;
 	private String code;
+	private String type;
 	private String level;
 	private String prop;
+	private String address;
 	private Integer parentId;
 	private Set<Subject> subjects = new HashSet<Subject>();
 	private Set<Geograph> addresses = new HashSet<Geograph>();
+	
+	public SchoolRoll() {
+		
+	}
+
+	public SchoolRoll(String name, String code, String type, String level,
+			String prop, String address) {
+		this.name = name;
+		this.code = code;
+		this.type = type;
+		this.level = level;
+		this.prop = prop;
+		this.address = address;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -66,6 +82,18 @@ public class SchoolRoll implements Serializable{
 	}
 	public void setSubjects(Set<Subject> subjects) {
 		this.subjects = subjects;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	

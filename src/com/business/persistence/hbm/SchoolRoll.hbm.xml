@@ -10,8 +10,10 @@
 		
 		<property name="name" column="SCH_NAME" type="string"/>
 		<property name="code" column="SCH_CODE" type="string"/>
-		<property name="level" column="SCH_LEVEL" type="string"/>
+		<property name="type" column="SCH_TYPE" type="string"/>
 		<property name="prop" column="SCH_PROP" type="string"/>
+		<property name="level" column="SCH_LEVEL" type="string"/>
+		<property name="address" column="SCH_ADDRESS" type="string"/>
 		<property name="parentId" column="SCH_PARENT_ID" type="int"/>
 		
 		<set name="addresses" inverse="true" table="geograph_schoolroll">
@@ -19,8 +21,8 @@
 			<many-to-many class="Geograph" column="GEO_ID"/>
 		</set>
 		
-		<set name="subjects" inverse="true">
-			<key column="SCH_CODE"/>
+		<set name="subjects" inverse="true" lazy="false">
+			<key column="SCH_ID"/>
 			<one-to-many class="Subject"/>
 		</set>
 	</class>

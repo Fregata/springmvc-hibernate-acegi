@@ -1,0 +1,38 @@
+﻿[
+    {
+        "SubjectName": "语文",
+        "SubjectCode": "SUB001"
+    },
+    {
+        "SubjectName": "数学",
+        "SubjectCode": "SUB002"
+    },
+    {
+        "SubjectName": "英语",
+        "SubjectCode": "SUB003"
+    },
+    {
+        "SubjectName": "化学",
+        "SubjectCode": "SUB004"
+    },
+    {
+        "SubjectName": "物理",
+        "SubjectCode": "SUB005"
+    },
+    {
+       	"SubjectName": "生物",
+        "SubjectCode": "SUB006"
+    },
+    {
+        "SubjectName": "地理",
+        "SubjectCode": "SUB007"
+    },
+    {
+        "SubjectName": "历史",
+        "SubjectCode": "SUB008"
+    },
+    {
+        "SubjectName": "政治",
+        "SubjectCode": "SUB009"
+    }
+]

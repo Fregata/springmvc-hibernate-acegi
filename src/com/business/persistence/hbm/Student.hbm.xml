@@ -11,7 +11,28 @@
 		<property name="code" column="STU_CODE" type="string"/>
 		<property name="name" column="STU_NAME" type="string"/>
 		<property name="gender" column="STU_GENDER" type="string"/>
-		<property name="age" column="STU_AGE" type="int"/>
+		<property name="birthDate"   column="STU_BIRTHDATE" type="date"/>
+		<property name="phone"       column="STU_PHONE" type="string"/>
+		<property name="email"       column="STU_EMAIL" type="string"/>
+		<property name="rollNo"     column="STU_ROLLNO" type="string"/>
+		<property name="nativePlace" column="STU_NATIVEPLACE" type="string"/>
+		<property name="IDCard"      column="STU_IDCARD" type="string"/>
+		<property name="address"       column="STU_ADDRESS" type="string"/>
+		<property name="zipCode"      column="STU_ZIPCODE" type="string"/>
+		<property name="status"      column="STU_STATUS" type="string"/>
+		<property name="familyType" column="STU_FAMILYTYPE" type="string"/>
+		<property name="knowledgeLevel"    column="STU_KNOWLEDGELEVEL" type="string"/>
+		<property name="originAttr"    column="STU_ORIGINATTR" type="string"/>
+		<property name="position"    column="STU_POSITION" type="string"/>
+		<property name="onboardDate" column="STU_ONBOARDDATE" type="date"/>
+		<property name="deboardDate" column="STU_DEBOARDDATE" type="date"/>
+		<property name="ethinc"      column="STU_ETHINC" type="string"/>
+		<property name="bloodCatalog"    column="STU_BLOODCATALOG" type="string"/>
+		<property name="nativeAddress"     column="STU_NATIVEADDRESS" type="string"/>
+		<property name="nativeZipCode"     column="STU_NATIVEZIPCODE" type="string"/>
+		<property name="telNo"       column="STU_TELNO" type="string"/>
+		<property name="imNo"        column="STU_IMNO" type="string"/>
+		<property name="remark"      column="STU_REMARK" type="string"/>
 		
 		<many-to-one name="stuActivity" cascade="all" unique="true" class="StudentActivity" column="STU_ACT_ID"/>
 		<set name="guardians" table="guardian_student">

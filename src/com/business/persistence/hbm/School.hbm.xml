@@ -9,8 +9,10 @@
 		</id>
 		
 		<property name="name" column="SCL_NAME" type="string"/>
+		<property name="type" column="SCL_TYPE" type="string"/>
 		<property name="level" column="SCL_LEVEL" type="string"/>
 		<property name="prop" column="SCL_PROP" type="string"/>
+		<property name="address" column="SCL_ADDRESS" type="string"/>
 		
 		<many-to-one name="schoolRoll" cascade="all" unique="true" class="SchoolRoll" column="SCH_ID"/>
 	</class>

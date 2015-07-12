@@ -11,7 +11,7 @@
 		<property name="startDate" column="START_DATE" type="date"/>
 		<property name="finishDate" column="FINISH_DATE" type="date"/>
 		
-		<many-to-one name="teacher" cascade="all" unique="true" class="Teacher" column="TEA_CODE"/>
-		<many-to-one name="subject" cascade="all" unique="true" class="Subject" column="SUB_CODE"/>
+		<many-to-one name="teacher" cascade="all" unique="true" class="Teacher" column="TEA_ID"/>
+		<many-to-one name="subject" cascade="all" unique="true" class="Subject" column="SUB_ID"/>
 	</class>
 </hibernate-mapping>

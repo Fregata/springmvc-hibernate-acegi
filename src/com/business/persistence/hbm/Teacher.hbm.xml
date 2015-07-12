@@ -11,7 +11,27 @@
 		<property name="code" column="TEA_CODE" type="string"/>
 		<property name="name" column="TEA_NAME" type="string"/>
 		<property name="gender" column="TEA_GENDER" type="string"/>
-		<property name="age" column="TEA_AGE" type="int"/>
+		<property name="birthDate" column="TEA_BIRTHDATE" type="date"/>
+		<property name="phone" column="TEA_PHONE" type="string"/>
+		<property name="email" column="TEA_EMAIL" type="string"/>
+		<property name="IDCard" column="TEA_IDCARD" type="string"/>
+		<property name="ethinc" column="TEA_ETHINC" type="string"/>
+		<property name="nativePlace" column="TEA_NATIVEPLACE" type="string"/>
+		<property name="college" column="TEA_COLLEGE" type="string"/>
+		<property name="major" column="TEA_MAJOR" type="string"/>
+		<property name="degree" column="TEA_DEGREE" type="string"/>
+		<property name="status" column="TEA_STATUS" type="string"/>
+		<property name="certificate" column="TEA_CERT" type="string"/>
+		<property name="postProp" column="TEA_POSTPROP" type="string"/>
+		<property name="jobTitle" column="TEA_JOBTITLE" type="string"/>
+		<property name="position" column="TEA_POSITION" type="string"/>
+		<property name="onboardDate" column="TEA_ONBOARDDATE" type="date"/>
+		<property name="deboardDate" column="TEA_DEBOARDDATE" type="date"/>
+		<property name="address" column="TEA_ADDRESS" type="string"/>
+		<property name="zipCode" column="TEA_ZIPCODE" type="string"/>
+		<property name="telNo" column="TEA_TELNO" type="string"/>
+		<property name="imNo" column="TEA_IMNO" type="string"/>
+		<property name="remark" column="TEA_REMARK" type="string"/>
 		
 		<many-to-one name="teaActivity" cascade="all" unique="true" class="TeacherActivity" column="TEA_ACT_ID"/>
 		<many-to-one name="subActivity" cascade="all" unique="true" class="SubjectActivity" column="SUB_ACT_ID"/>

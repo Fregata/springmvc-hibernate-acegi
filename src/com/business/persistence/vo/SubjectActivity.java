@@ -15,6 +15,13 @@ public class SubjectActivity implements Serializable{
 	private Subject subject;
 	private Teacher teacher;
 	
+	public SubjectActivity(Date startDate, Date finishDate, Subject subject,
+			Teacher teacher) {
+		this.startDate = startDate;
+		this.finishDate = finishDate;
+		this.subject = subject;
+		this.teacher = teacher;
+	}
 	
 	public Integer getId() {
 		return id;

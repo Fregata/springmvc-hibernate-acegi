@@ -16,6 +16,16 @@ public class TeacherActivity implements Serializable{
 	private SchoolRoll schoolRoll;
 	
 	
+	
+	
+	public TeacherActivity(Date startDate, Date finishDate, Teacher teacher,
+			SchoolRoll schoolRoll) {
+		this.startDate = startDate;
+		this.finishDate = finishDate;
+		this.teacher = teacher;
+		this.schoolRoll = schoolRoll;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

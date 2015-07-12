@@ -10,8 +10,10 @@ public class School implements Serializable{
 	private static final long serialVersionUID = 5235651693999063911L;
 	private Integer id;
 	private String name;
+	private String type;
 	private String level;
 	private String prop;
+	private String address;
 	private SchoolRoll schoolRoll;
 
 	
@@ -45,8 +47,22 @@ public class School implements Serializable{
 	public void setSchoolRoll(SchoolRoll schoolRoll) {
 		this.schoolRoll = schoolRoll;
 		this.name=schoolRoll.getName();
+		this.type=schoolRoll.getType();
 		this.level=schoolRoll.getLevel();
 		this.prop=schoolRoll.getProp();
+		this.address=schoolRoll.getAddress();
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	

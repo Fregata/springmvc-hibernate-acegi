@@ -38,16 +38,16 @@
             <li class="active"><a href="${ctx}/user/main.html"><i class="icon-tasks"></i> 全部功能</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="${ctx}/super/create-profile.html"><i class="icon-search"></i> 学校基础信息创建</a></li>
+            <li><a href="${ctx}/super/profile/step1.html"><i class="icon-search"></i> 学校基础信息创建</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="${ctx}/super/create-subject.html"><i class="icon-edit"></i> 教学科目信息创建</a></li>
+            <li><a href="${ctx}/super/subject/step1.html"><i class="icon-edit"></i> 教学科目信息创建</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="${ctx}/super/import-teacher.html"><i class="icon-signin"></i> 教师信息导入</a></li>
+            <li><a href="${ctx}/super/teacher/step1.html"><i class="icon-signin"></i> 教师信息导入</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="${ctx}/super/import-student.html"><i class="icon-signin"></i> 学生信息导入</a></li>
+            <li><a href="${ctx}/super/student/step1.html"><i class="icon-signin"></i> 学生信息导入</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

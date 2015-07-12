@@ -10,6 +10,6 @@
 		
 		<property name="name" column="SUB_NAME" type="string"/>
 		<property name="code" column="SUB_CODE" type="string"/>
-		<many-to-one name="schoolRoll" not-null="true" class="SchoolRoll" column="SCH_CODE"/>
+		<many-to-one name="schoolRoll" not-null="true" class="SchoolRoll" column="SCH_ID"/>
 	</class>
 </hibernate-mapping>
