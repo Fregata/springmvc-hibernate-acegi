@@ -32,6 +32,7 @@ import com.business.web.vo.StudentExcelVO;
 import com.business.web.vo.SubjectVO;
 import com.business.web.vo.TeacherExcelVO;
 import com.framework.service.IBaseService;
+import com.framework.util.bean.StringUtil;
 
 @Service
 public class PersisteManager implements IPersisteManager,ApplicationContextAware{
@@ -183,10 +184,15 @@ public class PersisteManager implements IPersisteManager,ApplicationContextAware
 			for(TeacherExcelVO t:teData){
 				SchoolRoll clz = iBaseService.load(SchoolRoll.class, Integer.valueOf(t.getClassID()));
 				Subject subject = null;
-				Teacher teacher = new Teacher(t.getTeaCode(),t.getTeaName(),t.getTeaGender(),df.parse(t.getTeaBirthDate()),t.getTeaPhone(),t.getTeaEmail(),
+				Date birthDate = StringUtil.isEmpty(t.getTeaBirthDate())?null:df.parse(t.getTeaBirthDate());
+				Date onboardDate = StringUtil.isEmpty(t.getTeaOnboardDate())?null:df.parse(t.getTeaOnboardDate());
+				Date deboardDate = StringUtil.isEmpty(t.getTeaDeboardDate())?null:df.parse(t.getTeaDeboardDate());
+				Date startDate = StringUtil.isEmpty(t.getStartDate())?null:df.parse(t.getStartDate());
+				Date finishDate = StringUtil.isEmpty(t.getFinishDate())?null:df.parse(t.getFinishDate());
+				Teacher teacher = new Teacher(t.getTeaCode(),t.getTeaName(),t.getTeaGender(),birthDate,t.getTeaPhone(),t.getTeaEmail(),
 						t.getTeaIDCard(),t.getTeaEthinc(),t.getTeaNativePlace(),t.getTeaCollege(),t.getTeaMajor(),t.getTeaDegree(),t.getTeaStatus(),
-						t.getTeaCertificate(),t.getTeaPostProp(),t.getTeaJobTitle(),t.getTeaPosition(),df.parse(t.getTeaOnboardDate()),
-						df.parse(t.getTeaDeboardDate()),t.getTeaAddress(),t.getTeaZipCode(),t.getTeaTelNo(),t.getTeaIMNo(),t.getTeaRemark());
+						t.getTeaCertificate(),t.getTeaPostProp(),t.getTeaJobTitle(),t.getTeaPosition(),onboardDate,
+						deboardDate,t.getTeaAddress(),t.getTeaZipCode(),t.getTeaTelNo(),t.getTeaIMNo(),t.getTeaRemark());
 				if(clz != null){
 					List<Subject> subjects = (List<Subject>)iBaseService.find("from Subject as s where s.schoolRoll.id="+String.valueOf(clz.getId())
 							+" and s.code='"+t.getSubjectID()+"'");
@@ -199,8 +205,8 @@ public class PersisteManager implements IPersisteManager,ApplicationContextAware
 				}
 				session.saveOrUpdate(teacher);
 				session.saveOrUpdate(subject);
-				TeacherActivity tAct = new TeacherActivity(df.parse(t.getStartDate()),df.parse(t.getFinishDate()),teacher,clz);
-				SubjectActivity sAct = new SubjectActivity(df.parse(t.getStartDate()),df.parse(t.getFinishDate()),subject,teacher);
+				TeacherActivity tAct = new TeacherActivity(startDate,finishDate,teacher,clz);
+				SubjectActivity sAct = new SubjectActivity(startDate,finishDate,subject,teacher);
 				session.saveOrUpdate(tAct);
 				session.saveOrUpdate(sAct);
 				teacher.setSubActivity(sAct);
@@ -230,18 +236,23 @@ public class PersisteManager implements IPersisteManager,ApplicationContextAware
 			tx = session.beginTransaction();
 			for(StudentExcelVO s:stData){
 				SchoolRoll clz = iBaseService.load(SchoolRoll.class, Integer.valueOf(s.getClassID()));
-				Student student = new Student(s.getStuCode(), s.getStuName(), s.getStuGender(), df.parse(s.getStuBirthDate()),
+				Date birthDate = StringUtil.isEmpty(s.getStuBirthDate())?null:df.parse(s.getStuBirthDate());
+				Date onboardDate = StringUtil.isEmpty(s.getStuOnboardDate())?null:df.parse(s.getStuOnboardDate());
+				Date deboardDate = StringUtil.isEmpty(s.getStuDeboardDate())?null:df.parse(s.getStuDeboardDate());
+				Date startDate = StringUtil.isEmpty(s.getStartDate())?null:df.parse(s.getStartDate());
+				Date finishDate = StringUtil.isEmpty(s.getFinishDate())?null:df.parse(s.getFinishDate());
+				Student student = new Student(s.getStuCode(), s.getStuName(), s.getStuGender(), birthDate,
 						s.getStuPhone(), s.getStuEmail(), s.getStuRollNo(), s.getStuNative(),
 						s.getStuIDCard(), s.getStuAddress(), s.getStuZipCode(), s.getStuStatus(),
 						s.getStuFamilyType(), s.getStuKnowledgeLevel(), s.getStuOriginAttr(),
-						s.getStuPosition(), df.parse(s.getStuOnboardDate()), df.parse(s.getStuDeboardDate()), s.getStuEthinc(),
+						s.getStuPosition(), onboardDate, deboardDate, s.getStuEthinc(),
 						s.getStuBloodCatalog(), s.getStuNativeAddress(), s.getStuNativeZipCode(),
 						s.getStuTelNo(), s.getStuIMNo(), s.getStuRemark());
 				if(clz == null){
 					throw new Exception("Can not find schoolroll in database,schoolroll id="+s.getClassID());
 				}
 				session.saveOrUpdate(student);
-				StudentActivity sAct = new StudentActivity(df.parse(s.getStartDate()),df.parse(s.getFinishDate()),student,clz);
+				StudentActivity sAct = new StudentActivity(startDate,finishDate,student,clz);
 				session.saveOrUpdate(sAct);
 				student.setStuActivity(sAct);
 			}

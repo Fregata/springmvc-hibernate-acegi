@@ -176,4 +176,12 @@ public class StringUtil {
 	public static String getCode18(){ 
 		return DateUtil.toString(new Date(), DateUtil.yyyyMMddHHmmssS) + (new Random()).nextInt(9);
 	}
+	
+	public static final boolean hasLength(String s){
+	    return (s != null) && (s.length() > 0);
+	  }
+
+	public static final boolean isEmpty(String s){
+		return (s == null) || (s.length() == 0);
+	}
 }

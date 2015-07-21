@@ -25,6 +25,7 @@ import com.business.web.vo.GradeVO;
 import com.business.web.vo.StudentExcelVO;
 import com.business.web.vo.SubjectVO;
 import com.business.web.vo.TeacherExcelVO;
+import com.framework.util.bean.StringUtil;
 
 public class ExcelUtil {
 
@@ -245,7 +246,7 @@ public class ExcelUtil {
 			for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
 				HSSFCell[] cells = new HSSFCell[31];
 				HSSFRow row = sheet.getRow(rowNum);
-				if (row != null) {
+				if (row != null && !StringUtil.isEmpty(String.valueOf(row.getCell(0).getStringCellValue()))) {
 					for(int i=0;i<cells.length;i++){
 						cells[i] = row.getCell(i);
 					}
@@ -280,7 +281,7 @@ public class ExcelUtil {
 			for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
 				HSSFCell[] cells = new HSSFCell[30];
 				HSSFRow row = sheet.getRow(rowNum);
-				if (row != null) {
+				if (row != null && !StringUtil.isEmpty(String.valueOf(row.getCell(0).getStringCellValue()))) {
 					for(int i=0;i<cells.length;i++){
 						cells[i] = row.getCell(i);
 					}

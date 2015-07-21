@@ -15,6 +15,8 @@ public class SubjectActivity implements Serializable{
 	private Subject subject;
 	private Teacher teacher;
 	
+	public SubjectActivity() {}
+	
 	public SubjectActivity(Date startDate, Date finishDate, Subject subject,
 			Teacher teacher) {
 		this.startDate = startDate;
